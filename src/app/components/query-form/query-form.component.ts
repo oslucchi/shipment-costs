@@ -26,6 +26,7 @@ export class QueryFormComponent {
       county: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]], // 2 chars only
       length: [null, [Validators.required, Validators.min(1)]], // Positive numbers
       width: [null, [Validators.required, Validators.min(1)]],
+      height: [null, [Validators.required, Validators.min(1)]],
       weight: [null, [Validators.required, Validators.min(1)]],
       adr: [false] // Boolean checkbox
     });
