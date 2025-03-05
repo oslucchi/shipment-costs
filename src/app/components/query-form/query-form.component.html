@@ -88,21 +88,16 @@
         </form>
       </div>
   
-      <!-- Right Column: Always Visible Shipment Cost Details -->
-        <div class="details-container">
-            <mat-card>
-            <h3>Shipment Cost Details</h3>
-            <div class="details">
-                <div class="details-row"><strong>Cost:</strong> {{ shipmentCostDetails?.cost || '-' }}</div>
-                <div class="details-row"><strong>Base Cost:</strong> {{ shipmentCostDetails?.baseCost || '-' }}</div>
-                <div class="details-row"><strong>Fuel Surcharge:</strong> {{ shipmentCostDetails?.fuelSurcharge || '-' }}</div>
-                <div class="details-row"><strong>Additional Costs:</strong> {{ shipmentCostDetails?.additionalCosts || '-' }}</div>
-                <div class="details-row"><strong>Disadvantage Location:</strong> {{ shipmentCostDetails?.disadvantageLocation || '-' }}</div>
-                <div class="details-row"><strong>ADR:</strong> {{ shipmentCostDetails?.adr || '-' }}</div>
-                <div class="details-row"><strong>Oversize:</strong> {{ shipmentCostDetails?.oversize || '-' }}</div>
-            </div>
-            </mat-card>
+        <!-- Right Column: Always Visible Shipment Cost Details -->
+        <div class="details">
+            <div class="details-row cost-row"><strong>Cost:</strong> <span class="value">{{ shipmentCostDetails?.cost | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>Base Cost:</strong> <span class="value">{{ shipmentCostDetails?.baseCost | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>Fuel Surcharge:</strong> <span class="value">{{ shipmentCostDetails?.fuelSurcharge | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>Additional Costs:</strong> <span class="value">{{ shipmentCostDetails?.additionalCosts | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>Disadvantage Location:</strong> <span class="value">{{ shipmentCostDetails?.disadvantageLocation | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>ADR:</strong> <span class="value">{{ shipmentCostDetails?.adr | number:'1.2-2' }} €</span></div>
+            <div class="details-row"><strong>Oversize:</strong> <span class="value">{{ shipmentCostDetails?.oversize | number:'1.2-2' }} €</span></div>
         </div>
-      </div>
+    </div>
   </mat-card>
   

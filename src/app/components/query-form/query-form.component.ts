@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-query-form',
@@ -18,7 +19,9 @@ export class QueryFormComponent {
     oversize?: number;
   } | null = null;
 
-  constructor(private fb: FormBuilder) {
+  private apiUrl = 'http://localhost:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts';
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.queryForm = this.fb.group({
       forwarder: ['', Validators.required], // Selector (Dropdown)
       zipCode: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]], // 5-digit ZIP
@@ -38,15 +41,28 @@ export class QueryFormComponent {
       return;
     }
 
-    // Simulated API call (Replace with real API request)
-    this.shipmentCostDetails = {
-      cost: 100,
-      baseCost: 80,
-      fuelSurcharge: 10,
-      additionalCosts: 5,
-      disadvantageLocation: 3,
-      adr: this.queryForm.value.adr ? 7 : 0,
-      oversize: (this.queryForm.value.length > 200 || this.queryForm.value.width > 100) ? 15 : 0
-    };
+    // Extract form values
+    const requestBody = this.queryForm.value;
+
+    // Send API request
+    this.http.post(
+        this.apiUrl, 
+        requestBody,
+        { 
+          headers: new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Language', 'IT-it')
+        }
+      )
+      .subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.shipmentCostDetails = response.shipmentCostDetails; // Populate the response object
+      },
+      error: (error) => {
+        console.error('API request failed:', error);
+        alert('Failed to retrieve shipment costs. Please try again.');
+      }
+    });
   }
 }

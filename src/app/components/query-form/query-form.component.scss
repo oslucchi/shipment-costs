@@ -26,17 +26,41 @@
   .details {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
   
   .details-row {
-    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between; /* Align label left, value right */
+    padding: 10px 12px;
     border-bottom: 1px solid #ddd;
+    font-family: monospace; /* Ensures numbers align nicely */
+    min-width: 200px; /* Prevents layout shifting */
+    font-size: 1.2rem; /* ✅ Default size for all values (2/3 of the previous 1.8rem) */
   }
   
   .details-row:last-child {
     border-bottom: none;
   }
+  
+  .value {
+    min-width: 100px; /* Ensures space is preallocated */
+    text-align: right; /* Right-align values */
+    font-weight: bold;
+    color: #333;
+    display: inline-block;
+    font-size: 1.2rem; /* ✅ Default size for all values */
+  }
+  
+  /* ✅ Increase font size only for Cost */
+  .details-row.cost-row {
+    font-size: 1.8rem; /* Large font for Cost */
+  }
+  
+  .details-row.cost-row .value {
+    font-size: 1.8rem; /* Ensure the value itself is large */
+  }
+  
   
   .full-width {
     width: 100%;
