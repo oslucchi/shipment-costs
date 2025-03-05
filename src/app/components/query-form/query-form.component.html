@@ -1,106 +1,115 @@
-<form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
-    <table>
-      <tr>
-        <td><label for="forwarder">Forwarder:</label></td>
-        <td>
-          <select id="forwarder" formControlName="forwarder">
-            <option value="" disabled>Select a forwarder</option>
-            <option value="DHL">DHL</option>
-            <option value="FedEx">FedEx</option>
-            <option value="UPS">UPS</option>
-          </select>
-          <div *ngIf="queryForm.get('forwarder')?.invalid && queryForm.get('forwarder')?.touched">
-            <small style="color: red;">Forwarder is required.</small>
-          </div>
-        </td>
-      </tr>
+<mat-card class="form-container">
+    <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Forwarder</mat-label>
+        <mat-select formControlName="forwarder">
+          <mat-option value="" disabled>Select a forwarder</mat-option>
+          <mat-option value="DHL">DHL</mat-option>
+          <mat-option value="FedEx">FedEx</mat-option>
+          <mat-option value="UPS">UPS</mat-option>
+        </mat-select>
+        <mat-error *ngIf="queryForm.get('forwarder')?.invalid && queryForm.get('forwarder')?.touched">
+          Forwarder is required.
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="zipCode">Zip Code:</label></td>
-        <td>
-          <input id="zipCode" type="text" formControlName="zipCode" />
-          <div *ngIf="queryForm.get('zipCode')?.invalid && queryForm.get('zipCode')?.touched">
-            <small style="color: red;">Enter a valid 5-digit Zip Code.</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Zip Code</mat-label>
+        <input matInput type="text" formControlName="zipCode" />
+        <mat-error *ngIf="queryForm.get('zipCode')?.invalid && queryForm.get('zipCode')?.touched">
+          Enter a valid 5-digit Zip Code.
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="city">City:</label></td>
-        <td>
-          <input id="city" type="text" formControlName="city" />
-          <div *ngIf="queryForm.get('city')?.invalid && queryForm.get('city')?.touched">
-            <small style="color: red;">City is required.</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>City</mat-label>
+        <input matInput type="text" formControlName="city" />
+        <mat-error *ngIf="queryForm.get('city')?.invalid && queryForm.get('city')?.touched">
+          City is required.
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="county">County:</label></td>
-        <td>
-          <input id="county" type="text" formControlName="county" maxlength="2" />
-          <div *ngIf="queryForm.get('county')?.invalid && queryForm.get('county')?.touched">
-            <small style="color: red;">County must be exactly 2 characters.</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>County</mat-label>
+        <input matInput type="text" formControlName="county" maxlength="2" />
+        <mat-error *ngIf="queryForm.get('county')?.invalid && queryForm.get('county')?.touched">
+          County must be exactly 2 characters.
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="length">Length:</label></td>
-        <td>
-          <input id="length" type="number" formControlName="length" />
-          <div *ngIf="queryForm.get('length')?.invalid && queryForm.get('length')?.touched">
-            <small style="color: red;">Enter a valid length (min 1).</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Length</mat-label>
+        <input matInput type="number" formControlName="length" />
+        <mat-error *ngIf="queryForm.get('length')?.invalid && queryForm.get('length')?.touched">
+          Enter a valid length (min 1).
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="width">Width:</label></td>
-        <td>
-          <input id="width" type="number" formControlName="width" />
-          <div *ngIf="queryForm.get('width')?.invalid && queryForm.get('width')?.touched">
-            <small style="color: red;">Enter a valid width (min 1).</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Width</mat-label>
+        <input matInput type="number" formControlName="width" />
+        <mat-error *ngIf="queryForm.get('width')?.invalid && queryForm.get('width')?.touched">
+          Enter a valid width (min 1).
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="weight">Weight:</label></td>
-        <td>
-          <input id="weight" type="number" formControlName="weight" />
-          <div *ngIf="queryForm.get('weight')?.invalid && queryForm.get('weight')?.touched">
-            <small style="color: red;">Enter a valid weight (min 1).</small>
-          </div>
-        </td>
-      </tr>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Weight</mat-label>
+        <input matInput type="number" formControlName="weight" />
+        <mat-error *ngIf="queryForm.get('weight')?.invalid && queryForm.get('weight')?.touched">
+          Enter a valid weight (min 1).
+        </mat-error>
+      </mat-form-field>
   
-      <tr>
-        <td><label for="adr">ADR:</label></td>
-        <td>
-          <input id="adr" type="checkbox" formControlName="adr" />
-        </td>
-      </tr>
+      <mat-checkbox formControlName="adr">ADR</mat-checkbox>
   
-      <tr>
-        <td colspan="2">
-          <button type="submit" [disabled]="queryForm.invalid">Confirm</button>
-        </td>
-      </tr>
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="queryForm.invalid">Confirm</button>
+      </div>
+    </form>
+  </mat-card>
+  
+  <!-- Display shipment cost details -->
+  <mat-card *ngIf="shipmentCostDetails" class="details-container">
+    <h3>Shipment Cost Details</h3>
+    <table mat-table [dataSource]="[shipmentCostDetails]" class="mat-elevation-z8">
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef> Cost </th>
+        <td mat-cell *matCellDef="let element"> {{ element.cost }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="baseCost">
+        <th mat-header-cell *matHeaderCellDef> Base Cost </th>
+        <td mat-cell *matCellDef="let element"> {{ element.baseCost }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="fuelSurcharge">
+        <th mat-header-cell *matHeaderCellDef> Fuel Surcharge </th>
+        <td mat-cell *matCellDef="let element"> {{ element.fuelSurcharge }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="additionalCosts">
+        <th mat-header-cell *matHeaderCellDef> Additional Costs </th>
+        <td mat-cell *matCellDef="let element"> {{ element.additionalCosts }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="disadvantageLocation">
+        <th mat-header-cell *matHeaderCellDef> Disadvantage Location </th>
+        <td mat-cell *matCellDef="let element"> {{ element.disadvantageLocation }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="adr">
+        <th mat-header-cell *matHeaderCellDef> ADR </th>
+        <td mat-cell *matCellDef="let element"> {{ element.adr }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="oversize">
+        <th mat-header-cell *matHeaderCellDef> Oversize </th>
+        <td mat-cell *matCellDef="let element"> {{ element.oversize }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['cost', 'baseCost', 'fuelSurcharge', 'additionalCosts', 'disadvantageLocation', 'adr', 'oversize']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['cost', 'baseCost', 'fuelSurcharge', 'additionalCosts', 'disadvantageLocation', 'adr', 'oversize'];"></tr>
     </table>
-  </form>
-  
-  <!-- Display shipment cost details after submission -->
-  <div *ngIf="shipmentCostDetails">
-    <h3>Shipment Cost Details:</h3>
-    <table border="1">
-      <tr><td>Cost</td><td>{{ shipmentCostDetails.cost }}</td></tr>
-      <tr><td>Base Cost</td><td>{{ shipmentCostDetails.baseCost }}</td></tr>
-      <tr><td>Fuel Surcharge</td><td>{{ shipmentCostDetails.fuelSurcharge }}</td></tr>
-      <tr><td>Additional Costs</td><td>{{ shipmentCostDetails.additionalCosts }}</td></tr>
-      <tr><td>Disadvantage Location</td><td>{{ shipmentCostDetails.disadvantageLocation }}</td></tr>
-      <tr><td>ADR</td><td>{{ shipmentCostDetails.adr }}</td></tr>
-      <tr><td>Oversize</td><td>{{ shipmentCostDetails.oversize }}</td></tr>
-    </table>
-  </div>
-  
+  </mat-card>  
