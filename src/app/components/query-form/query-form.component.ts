@@ -19,7 +19,7 @@ export class QueryFormComponent {
     oversize?: number;
   } | null = null;
 
-  private apiUrl = 'http://localhost:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts';
+  private apiUrl = 'http://192.168.60.184:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts';
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.queryForm = this.fb.group({

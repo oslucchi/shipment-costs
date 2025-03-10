@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+/target
+shipment-costs.war
 
 # Node
 /node_modules

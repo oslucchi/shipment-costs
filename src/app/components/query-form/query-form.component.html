@@ -12,27 +12,27 @@
         <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
           
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Forwarder</mat-label>
+            <mat-label>Vettore</mat-label>
             <mat-select formControlName="forwarder">
               <mat-option value="CES">CES</mat-option>
               <mat-option value="GLS">GLS</mat-option>
             </mat-select>
             <mat-error *ngIf="queryForm.get('forwarder')?.invalid && queryForm.get('forwarder')?.touched">
-              Forwarder is required.
+              La selezione di un trasportatore è obbligatoria.
             </mat-error>
           </mat-form-field>
   
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field appearance="outline" class="full-width" placeholder="C.A.P." >
             <mat-label>Zip Code</mat-label>
             <input matInput type="text" formControlName="zipCode" />
             <mat-error *ngIf="queryForm.get('zipCode')?.invalid && queryForm.get('zipCode')?.touched">
-              Enter a valid 5-digit Zip Code.
+              Inserire un CAP valido.
             </mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>City</mat-label>
-            <input matInput type="text" formControlName="city" />
+            <input matInput type="text" formControlName="city" placeholder="Città"/>
             <mat-error *ngIf="queryForm.get('city')?.invalid && queryForm.get('city')?.touched">
               City is required.
             </mat-error>
@@ -40,7 +40,7 @@
   
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>County</mat-label>
-            <input matInput type="text" formControlName="county" maxlength="2" />
+            <input matInput type="text" formControlName="county" maxlength="2" placeholder="Provincia"/>
             <mat-error *ngIf="queryForm.get('county')?.invalid && queryForm.get('county')?.touched">
               County must be exactly 2 characters.
             </mat-error>
@@ -48,7 +48,7 @@
   
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Length</mat-label>
-            <input matInput type="number" formControlName="length" />
+            <input matInput type="number" formControlName="length" placeholder="Lunghezza (cm)"/>
             <mat-error *ngIf="queryForm.get('length')?.invalid && queryForm.get('length')?.touched">
               Enter a valid length (min 1).
             </mat-error>
@@ -56,7 +56,7 @@
   
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Width</mat-label>
-            <input matInput type="number" formControlName="width" />
+            <input matInput type="number" formControlName="width" placeholder="Larghezza (cm)"/>
             <mat-error *ngIf="queryForm.get('width')?.invalid && queryForm.get('width')?.touched">
               Enter a valid width (min 1).
             </mat-error>
@@ -64,7 +64,7 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Heigth</mat-label>
-            <input matInput type="number" formControlName="height" />
+            <input matInput type="number" formControlName="height" placeholder="Altezza (cm)"/>
             <mat-error *ngIf="queryForm.get('height')?.invalid && queryForm.get('height')?.touched">
               Enter a valid height (min 1).
             </mat-error>
@@ -72,7 +72,7 @@
   
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Weight</mat-label>
-            <input matInput type="number" formControlName="weight" />
+            <input matInput type="number" formControlName="weight" placeholder="Peso (kg)"/>
             <mat-error *ngIf="queryForm.get('weight')?.invalid && queryForm.get('weight')?.touched">
               Enter a valid weight (min 1).
             </mat-error>
