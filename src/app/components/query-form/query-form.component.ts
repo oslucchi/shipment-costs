@@ -46,7 +46,7 @@ export class QueryFormComponent implements OnInit, OnDestroy {
       if (ip) {
         this.apiUrl = ip.startsWith("188")
           ? 'http://192.168.60.184:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts'
-          : 'http://188.219.225.106:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts';
+          : 'http://188.219.225.106:8070/orderMngrAX/restcall/orders/evaluateShipmentCosts';
 
         console.log("Updated API URL:", this.apiUrl);
       }
