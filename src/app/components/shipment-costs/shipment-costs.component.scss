@@ -88,3 +88,30 @@
     text-align: left;
   }
   
+  .table-wrapper {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    align-items: flex-start; /* use center for vertical centering if desired */
+    min-height: 100vh; /* full height of the viewport */
+    padding-top: 2rem; /* optional spacing from top */
+  }
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Align label left, value right */
+    padding: 10px 12px;
+    margin-top: 20px;
+    font-family: monospace; /* Ensures numbers align nicely */
+    min-width: 200px; /* Prevents layout shifting */
+    font-size: 1.2rem; /* ✅ Default size for all values (2/3 of the previous 1.8rem) */
+  }
+  
+  .highlight {
+    font-weight: bold;
+    color: red;
+  }
+  
+  .back-button:hover {
+    color: #0056b3;
+  }
+  

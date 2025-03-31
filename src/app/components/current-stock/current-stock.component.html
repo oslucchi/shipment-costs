@@ -1,0 +1,37 @@
+<div class="table-wrapper">
+  
+<table>
+  <div class="header-container">
+    <h2 style="
+           color: blue;
+           font-weight: bold;">
+      Stato magazzino Ardex
+    </h2>
+    <h2 class="back-button" (click)="goBack()">Back</h2>
+  </div>
+
+  <table *ngIf="currentStock.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Article</th>
+        <th>Description</th>
+        <th class="rigth-align">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of currentStock"
+          [ngClass]="{ 'highlight': item.articleCode === '' }">
+        <td >{{ item.location }}</td>
+        <td>{{ item.articleCode === '' ? 'VUOTA' : item.articleCode}}</td>
+        <td>{{ item.articleDescription }}</td>
+        <td style='text-align: right;'>{{ item.quantityInLocation }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p>No stock data available.</p>
+  </ng-template>
+</table>
+</div>

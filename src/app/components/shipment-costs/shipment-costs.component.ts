@@ -2,13 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { ApiService } from '../../api.service';
 
 @Component({
-  selector: 'app-query-form',
-  templateUrl: './query-form.component.html',
-  styleUrls: ['./query-form.component.scss']
+  selector: 'app-shipment-costs',
+  templateUrl: './shipment-costs.component.html',
+  styleUrls: ['./shipment-costs.component.scss']
 })
-export class QueryFormComponent implements OnInit, OnDestroy {
+export class ShipmentCostsComponent implements OnInit {
   queryForm: FormGroup;
   shipmentCostDetails: {
     cost?: number;
@@ -20,11 +22,10 @@ export class QueryFormComponent implements OnInit, OnDestroy {
     oversize?: number;
   } | null = null;
 
-  private apiUrl = '';
-  private publicIP$ = new BehaviorSubject<string | null>(null); // Reactive public IP state
-  private ipSubscription!: Subscription;
+  private fullUrl = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, 
+              private router: Router, private apiService: ApiService) {
     this.queryForm = this.fb.group({
       forwarder: ['', Validators.required], 
       zipCode: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]], 
@@ -37,37 +38,15 @@ export class QueryFormComponent implements OnInit, OnDestroy {
       adr: [false] 
     });
   }
+  goBack(): void {
+    this.router.navigate(['/']); // navigates to the root route = LandingComponent
+  }
 
   ngOnInit(): void {
-    this.getPublicIP(); // Get the public IP on init
-
-    // ✅ Subscribe to publicIP changes and update apiUrl dynamically
-    this.ipSubscription = this.publicIP$.subscribe(ip => {
-      if (ip) {
-        this.apiUrl = ip.startsWith("188")
-          ? 'http://192.168.60.184:8080/orderMngrAX/restcall/orders/evaluateShipmentCosts'
-          : 'http://188.219.225.106:8070/orderMngrAX/restcall/orders/evaluateShipmentCosts';
-
-        console.log("Updated API URL:", this.apiUrl);
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.ipSubscription.unsubscribe(); // ✅ Prevent memory leaks
-  }
-
-  getPublicIP(): void {
-    this.http.get<{ ip: string }>('https://api64.ipify.org?format=json').subscribe({
-      next: response => {
-        console.log('Public IP:', response.ip);
-        this.publicIP$.next(response.ip); // ✅ Update the BehaviorSubject
-      },
-      error: error => {
-        console.error('API request failed:', error);
-        alert('Failed to retrieve public address.');
-      }
-    });
+    const base = this.apiService.getBaseUrl();
+    this.fullUrl = base + 'orders/evaluateShipmentCosts';
+  
+    console.log("API URL:", this.fullUrl);
   }
 
   onSubmit(): void {
@@ -79,7 +58,7 @@ export class QueryFormComponent implements OnInit, OnDestroy {
     const requestBody = this.queryForm.value;
 
     this.http.post(
-      this.apiUrl, 
+      this.fullUrl, 
       requestBody,
       { 
         headers: new HttpHeaders()
