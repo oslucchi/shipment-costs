@@ -1,7 +1,17 @@
 <div class="landing-container">
-    <h1>Funzioni Ardex</h1>
-  
-    <button (click)="currentStock()">Verifica stato magazzino</button>
-    <button (click)="shipmentCost()">Simulazione costo spedizioni</button>
+  <h1>Funzioni Ardex</h1>
+
+  <div *ngIf="showPrivateToggle">
+    <label class="use-private-toggle">
+      <input
+        type="checkbox"
+        [checked]="usePrivate"
+        (change)="usePrivate = $any($event.target).checked"
+      />
+      Usa indirizzo privato
+    </label>
   </div>
-  
+
+  <button (click)="currentStock()">Verifica stato magazzino</button>
+  <button (click)="shipmentCost()">Simulazione costo spedizioni</button>
+</div>
